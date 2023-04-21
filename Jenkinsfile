@@ -22,8 +22,8 @@ pipeline {
     stage('Push Docker image to Docker Hub') {
       steps {
         script {
-          withCredentials([usernamePassword(credentialsId: 'dockerhub', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
-            sh "docker login -u ${DOCKER_USERNAME} -p ${DOCKER_PASSWORD}"
+          withCredentials([usernamePassword(credentialsId: 'dockerhub', usernameVariable: 'kimsunghyun26', passwordVariable: 'ksh31010!@')]) {
+            sh "docker login -u kimsunghyun26 -p ksh31010!@"
             sh "docker push ${DOCKER_REGISTRY}/${DOCKER_IMAGE}:${BUILD_NUMBER}"
           }
         }

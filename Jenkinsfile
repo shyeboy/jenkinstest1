@@ -1,37 +1,37 @@
 pipeline {
   agent any
-
-
   environment {
-    DOCKER_USERNAME = credentials('dockerhub').username
-    DOCKER_PASSWORD = credentials('dockerhub').password
+    DOCKER_REGISTRY = "docker.io"
+    DOCKER_IMAGE = "kimsunghyun26/final_project"
   }
-
-
   stages {
     stage('Build Docker image') {
       steps {
         script {
-          def imageName = "kimsunghyun26/final_project"
-          sh "docker build -t kimsunghyun26/final_project ."
-          sh "docker tag kimsunghyun26/final_project hyeran0920/project:v12"
+          sh "docker build -t ${DOCKER_IMAGE} ."
         }
       }
     }
-
+    stage('Tag Docker image') {
+      steps {
+        script {
+          sh "docker tag ${DOCKER_IMAGE} ${DOCKER_REGISTRY}/${DOCKER_IMAGE}:${BUILD_NUMBER}"
+        }
+      }
+    }
     stage('Push Docker image to Docker Hub') {
       steps {
-        withCredentials([usernamePassword(credentialsId: 'dockerhub', usernameVariable: 'DOCKERHUB_USERNAME', passwordVariable: 'DOCKERHUB_PASSWORD')]) {
-          script {
-            def imageName = "kimsunghyun26/final_project"
-            sh "docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD"
-            sh "docker push hyeran0920/project:v12"
+        script {
+          withCredentials([usernamePassword(credentialsId: 'dockerhub', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
+            sh "docker login -u ${DOCKER_USERNAME} -p ${DOCKER_PASSWORD}"
+            sh "docker push ${DOCKER_REGISTRY}/${DOCKER_IMAGE}:${BUILD_NUMBER}"
           }
         }
       }
     }
   }
 }
+
 
 
 

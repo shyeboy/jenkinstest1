@@ -1,10 +1,5 @@
- pipeline {
+pipeline {
   agent any
-
-  environment {
-  DOCKER_USERNAME = credentials('dockerhub').username
-  DOCKER_PASSWORD = credentials('dockerhub').password
-  }
 
   stages {
     stage('Build Docker image') {
@@ -19,10 +14,10 @@
 
     stage('Push Docker image to Docker Hub') {
       steps {
-        withCredentials([usernamePassword(credentialsId: 'dockerhub', usernameVariable: 'kimsunghyun26', passwordVariable: 'ksh31010!@')]) {
+        withCredentials([usernamePassword(credentialsId: 'dockerhub', usernameVariable: 'DOCKERHUB_USERNAME', passwordVariable: 'DOCKERHUB_PASSWORD')]) {
           script {
             def imageName = "kimsunghyun26/final_project"
-            sh "docker login -u kimsunghyun26 -p ksh31010!@"
+            sh "docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD"
             sh "docker push hyeran0920/project:v12"
           }
         }
@@ -30,6 +25,7 @@
     }
   }
 }
+
 
 
 

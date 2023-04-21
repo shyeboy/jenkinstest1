@@ -13,13 +13,10 @@ pipeline {
         stage("Build Docker image") {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'Dockerhub', passwordVariable: 'ksh31010!@', usernameVariable: 'kimsunghyun26')]) {
-                    // Dockerhub credentials 등록 및 사용
-                    sh "docker login -u ${DOCKER_USERNAME} -p ${DOCKER_PASSWORD}"
+  
+                    echo $DOCKERHUB_PASSWORD | docker login --username $DOCKERHUB_USERNAME --password-stdin
+                    docker build -t shyeboy/hyeran0920/project:v11 -f ./Dockerfile .
                 }
-                
-                sh "docker build -t ${DOCKER_REGISTRY}/${DOCKER_IMAGE_NAME} -f ${DOCKERFILE} ." // Docker 이미지 빌드
-            }
-        }
         
         stage("Push Docker image") {
             steps {

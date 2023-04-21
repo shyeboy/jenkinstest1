@@ -5,7 +5,7 @@ pipeline {
         DOCKER_REGISTRY = "docker.io"
         DOCKER_HUB_USERNAME = credentials("kimsunghyun26")
         DOCKER_HUB_PASSWORD = credentials("ksh31010!@")
-        DOCKER_IMAGE_NAME = "shyeboy/hyeran0920/project"
+        DOCKER_IMAGE_NAME = "hyeran0920/project"
         DOCKER_IMAGE_TAG = "v12"
     }
 

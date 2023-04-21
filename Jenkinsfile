@@ -12,7 +12,7 @@ pipeline {
     stages {
         stage("Build Docker image") {
             steps {
-                withCredentials([usernamePassword(credentialsId: 'Docker_image_jenkins', passwordVariable: 'ksh31010!@', usernameVariable: 'kimsunghyun26')]) {
+                withCredentials([usernamePassword(credentialsId: 'Dockerhub', passwordVariable: 'ksh31010!@', usernameVariable: 'kimsunghyun26')]) {
                     // Dockerhub credentials 등록 및 사용
                     sh "docker login -u ${DOCKER_USERNAME} -p ${DOCKER_PASSWORD}"
                 }
@@ -23,7 +23,7 @@ pipeline {
         
         stage("Push Docker image") {
             steps {
-                withCredentials([usernamePassword(credentialsId: 'Docker_image_jenkins', passwordVariable: 'ksh31010!@', usernameVariable: 'kimsunghyun26')]) {
+                withCredentials([usernamePassword(credentialsId: 'Dockerhub', passwordVariable: 'ksh31010!@', usernameVariable: 'kimsunghyun26')]) {
                     // Dockerhub credentials 등록 및 사용
                     sh "docker login -u ${DOCKER_USERNAME} -p ${DOCKER_PASSWORD}"
                 }

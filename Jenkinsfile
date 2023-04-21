@@ -2,7 +2,7 @@ pipeline {
     agent any
     
     environment {
-        DOCKER_REGISTRY = "https://index.docker.io/v1/dckr_pat_Sc2Ew6PKFKW-qjDACNn1Hz1c36I " // Dockerhub 등 레지스트리의 URL
+        DOCKER_REGISTRY = "https://index.docker.io/shyeboy " // Dockerhub 등 레지스트리의 URL
         DOCKER_IMAGE_NAME = "hyeran0920/project:v11" // 빌드할 Docker 이미지의 이름
         DOCKERFILE = "./Dockerfile" // Dockerfile의 경로
         DOCKER_USERNAME = "kimsunghyun26"

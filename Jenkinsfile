@@ -7,7 +7,7 @@ pipeline {
         script {
           def imageName = "kimsunghyun26/final_project"
           sh "docker build -t hyeran0920/project:v11 ."
-          sh "docker tag hyeran0920/project:v11 hyeran0920/project:v11:latest"
+          sh "docker tag hyeran0920/project:v11 hyeran0920/project:v12"
         }
       }
     }
@@ -18,7 +18,7 @@ pipeline {
           script {
             def imageName = "kimsunghyun26/final_project"
             sh "docker login -u kimsunghyun26 -p ksh31010!@"
-            sh "docker push hyeran0920/project:v11:latest"
+            sh "docker push hyeran0920/project:v12"
           }
         }
       }

@@ -1,34 +1,48 @@
 pipeline {
     agent any
-    
+
     environment {
-        DOCKER_REGISTRY = "https://index.docker.io/shyeboy/hyeran0920/project:v11" // Dockerhub 등 레지스트리의 URL
-        DOCKER_IMAGE_NAME = "hyeran0920/project:v11" // 빌드할 Docker 이미지의 이름
-        DOCKERFILE = "./Dockerfile" // Dockerfile의 경로
-        DOCKER_USERNAME = "kimsunghyun26"
-        DOCKER_PASSWORD = "ksh31010!@"
+        DOCKER_REGISTRY = "docker.io"
+        DOCKER_HUB_USERNAME = credentials("kimsunghyun26")
+        DOCKER_HUB_PASSWORD = credentials("ksh31010!@")
+        DOCKER_IMAGE_NAME = "shyeboy/hyeran0920/project"
+        DOCKER_IMAGE_TAG = "v12"
     }
-    
+
     stages {
-        stage("Build Docker image") {
+        stage('Build') {
             steps {
-                withCredentials([usernamePassword(credentialsId: 'Dockerhub', passwordVariable: 'ksh31010!@', usernameVariable: 'kimsunghyun26')]) {
-  
-                    echo $DOCKERHUB_PASSWORD | docker login --username $DOCKERHUB_USERNAME --password-stdin
-                    docker build -t shyeboy/hyeran0920/project:v11 -f ./Dockerfile .
+                script {
+                    sh "docker build -t ${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG} -f ./Dockerfile ."
                 }
+            }
+        }
         
-        stage("Push Docker image") {
+        stage('Push to Docker Hub') {
             steps {
-                withCredentials([usernamePassword(credentialsId: 'Dockerhub', passwordVariable: 'ksh31010!@', usernameVariable: 'kimsunghyun26')]) {
-                    // Dockerhub credentials 등록 및 사용
-                    sh "docker login -u ${DOCKER_USERNAME} -p ${DOCKER_PASSWORD}"
+                script {
+                    docker.withRegistry("${DOCKER_REGISTRY}", "Dockerhub") {
+                        def dockerImage = docker.image("${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG}")
+                        dockerImage.push()
+                    }
                 }
-                
-                sh "docker push ${DOCKER_REGISTRY}/${DOCKER_IMAGE_NAME}" // Docker 이미지 push
             }
         }
     }
+    
+    post {
+        always {
+            sh "docker rmi -f ${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG}"
+        }
+    }
+}
+
+def credentials(credentialsId) {
+    return "${env[credentialsId]}"
+}
+
+def dockerHubLogin() {
+    return dockerRegistry.credentials("${DOCKER_HUB_USERNAME}", "${DOCKER_HUB_PASSWORD}")
 }
 
 

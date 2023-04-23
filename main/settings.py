@@ -90,7 +90,7 @@ DATABASES = {
        'default': {
             'ENGINE': 'django.db.backends.mysql',
             'NAME': 'django-database', # DB명
-            'USER': 'hyeran0920', # 데이터베이스 계정
+            'USER': 'adminuser', # 데이터베이스 계정
             'PASSWORD':'P@ssw0rd', # 계정 비밀번호
         #     # 'HOST':'localhost', # 데이테베이스 IP
             'HOST': 'django-database.mysql.database.azure.com',

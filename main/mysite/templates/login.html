@@ -1,0 +1,39 @@
+{% include "header.html" %} 
+<!-- 기본 템플릿 안에 삽입될 내용 Start -->
+{% block content %}
+{% endblock %}
+{% load static %}
+
+  <body class="bg-primary">
+  <link rel="stylesheet" type="text/css" href="{% static 'bootstrap.min.css' %}"><br><br>
+  <div class="container my-5 bg-white" style="width: 30%; border-radius:30px; box-shadow: 5px 5px 5px #000080;">
+	<form method="post" class="post-form mx-auto form-group" action="{% url 'common:login' %}">
+	  {% csrf_token %}<br>
+	  <h3 class="dark-grey-text text-center">
+		<strong>로그인</strong>
+	  </h3>
+	  <br><br>
+	  <table class="table table-borderless">
+		<tr>
+		  <td><input type="text" name="username" id="username" class="form-control" placeholder="아이디"></td>
+		</tr>
+		<tr>
+		  <td><input type="password" name="password" id="password" class="form-control" placeholder="비밀번호"></td>
+		</tr>
+	  </table>
+	  <div class="text-center">
+		<button class="btn btn-indigo" href="/">로그인</button>
+		<br><br>
+		<a href="{% url 'common:register' %}">회원이 아닌가요? 회원가입</a>
+	  </div>
+	</form><br>
+  </div>
+  </body>
+  <style>
+    .btn-indigo:hover {
+		color: #007BFF;
+		text-decoration: underline;
+    }
+  </style>
+</body>
+

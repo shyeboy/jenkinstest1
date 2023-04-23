@@ -1,0 +1,56 @@
+{% include "header.html" %}
+
+{% block content %}
+{% endblock %}
+
+{% load static %}
+
+<body class="bg-primary">
+  <link rel="stylesheet" type="text/css" href="{% static 'bootstrap.min.css' %}">
+  <br><br>
+
+  <div class="container my-5 bg-white" style="width: 30%; border-radius:30px; box-shadow: 5px 5px 5px #000080;">
+    <br><br>
+    <form method="post" class="post-form" action="{% url 'common:register' %}">
+      {% csrf_token %}
+      <h3 class="dark-grey-text text-center"><strong>회원가입</strong></h3><br><br>
+      
+      <table class="table table-borderless">
+        <tbody>
+          <tr>
+            <td><i class="fas fa-user prefix grey-text"></i></td>
+            <td><input type="text" name="username" id="username" class="form-control" placeholder="아이디"></td>
+            <td><i class="fas fa-user prefix grey-text"></i></td>
+
+          </tr>
+          <tr>
+            <td><i class="fas fa-key prefix grey-text"></i></td>
+            <td><input type="password" name="password1" id="password1" class="form-control" placeholder="비밀번호"></td>
+          </tr>
+          <tr>
+            <td><i class="fas fa-key prefix grey-text"></i></td>
+            <td><input type="password" name="password2" id="password2" class="form-control" placeholder="비밀번호 확인"></td>
+          </tr>
+          <tr>
+            <td><i class="fas fa-envelope prefix grey-text"></i></td>
+            <td><input type="email" name="email" id="email" class="form-control" placeholder="이메일"></td>
+          </tr>
+          <tr>
+            <td><i class="fas fa-signature prefix grey-text"></i></td>
+            <td><input type="text" name="name" id="name" class="form-control" placeholder="성명/회사명"></td>
+          </tr>
+        </tbody>
+      </table><br><br>
+
+      <div class="text-center">
+        <button class="btn btn-indigo">회원가입</button><br><br>
+      </div>                    
+    </form>
+  </div>
+  <style>
+    .btn-indigo:hover {
+		color: #007BFF;
+		text-decoration: underline;
+    }
+  </style>
+</body>

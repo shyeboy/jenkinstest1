@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <title>Main Page</title>
+</head>
+<header>
+  {% include "header.html" %} 
+<!-- 기본 템플릿 안에 삽입될 내용 Start -->
+{% block content %}
+{% endblock %}
+</header>
+<body>
+  <div class="container-fluid" id="intro-section">
+    <div class="intro-text">
+      <h1>MetaNet Internship Project</h1><br>
+      <h3>CI/CD환경을 구축하기 위한  kubernetes활용 및  terraform으로 MSA구조 인프라 설계</h3>
+    </div>
+  </div>
+  
+  
+  <style>
+    .container-fluid {
+      height: 100vh;
+      position: relative;
+    }
+  
+    .intro-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      z-index: 3;
+    }
+  
+    #intro-section {
+      background-color: #0d6efd;
+      transition: background-color 0.5s ease;
+    }
+  
+    #intro-section.bg-color {
+      background-color: #fff;
+    }
+  </style>
+  
+  
+  <script>
+    $(document).ready(function(){
+      $(window).scroll(function() {
+        var scrollTop = $(this).scrollTop();
+        var introSectionHeight = $('#intro-section').outerHeight();
+        // If user has scrolled past intro section
+        if (scrollTop > (introSectionHeight - $(window).height())) {
+          $('#intro-section').addClass('bg-color');
+        } else {
+          $('#intro-section').removeClass('bg-color');
+        }
+      });
+    });
+  </script>
+  
+
+
+<div class="container mt-5">
+  <h1>팀원 소개</h1><br>
+  <div class="row">
+    <div class="col-sm-3">
+      <img src="https://cdn-icons-png.flaticon.com/512/1372/1372643.png" width="100">
+      <h3>김성현</h3>
+      <b>조장 CI/CD </b>
+      <p>젠킨스를 이용하여 Docker 파일 확인과 배포를 담당</p>
+    </div>
+    <div class="col-sm-3">
+      <img src="https://cdn-icons-png.flaticon.com/512/4439/4439950.png" width="100">
+      <h3>서유진</h3>
+      <b>Django</b>
+      <p>Django를 이용하여 웹사이트 구축</p>
+    </div>
+    <div class="col-sm-3">
+      <img src="https://cdn-icons-png.flaticon.com/512/4439/4439950.png" width="100">
+      <h3>이솔</h3>
+      <b>Log</b>
+      <p>Log파일을 추출하여 이상 접속 차단</p>
+    </div>
+    <div class="col-sm-3">
+      <img src="https://cdn-icons-png.flaticon.com/512/1372/1372643.png" width="100">
+
+      <h3>조민기</h3>
+      <b>Terraform</b>
+      <p>Terraform을 이용하여 Infra 구축</p>
+    </div>
+  </div>
+</div>
+<br><br><br>
+
+</body>
+</html>

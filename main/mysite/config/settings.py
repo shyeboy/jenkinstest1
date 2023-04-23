@@ -87,26 +87,13 @@ DATABASES = {
     #    'ENGINE': 'django.db.backends.sqlite3',
     #    'NAME': BASE_DIR / 'db.sqlite3',
     #}
-#        'default': {
-#          'ENGINE': 'django.db.backends.mysql',
-#          'NAME': 'django_database', # DB명
-#          'USER': 'root', # 데이터베이스 계정
-#          'PASSWORD':'nina092@', # 계정 비밀번호
-#     #     # 'HOST':'localhost', # 데이테베이스 IP
-#          'HOST':'localhost',
-#          'PORT':'3306', # 데이터베이스 port
-#          'OPTIONS': {'charset': 'utf8mb4'}, # 문자 인코딩 설정
-         
-#      }
-# }
-
-    'default': {
+       'default': {
             'ENGINE': 'django.db.backends.mysql',
             'NAME': 'django-database', # DB명
-            'USER': 'hyeran0920', # 데이터베이스 계정
+            'USER': 'adminuser', # 데이터베이스 계정
             'PASSWORD':'P@ssw0rd', # 계정 비밀번호
         #     # 'HOST':'localhost', # 데이테베이스 IP
-            'HOST': 'django-database.mysql.database.azure.com',
+            'HOST': 'django.mysql.database.azure.com',
             'PORT':'3306', # 데이터베이스 port
             'OPTIONS': {
                 'ssl': {'require_secure_transport': True},

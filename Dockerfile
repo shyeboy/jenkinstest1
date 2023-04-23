@@ -14,7 +14,7 @@ RUN apt-get update && apt-get install -y \
 # 작업 디렉토리 설정
 WORKDIR /mysite
 
-COPY . /mysite/
+COPY . /main/mysite/config
 
 RUN pip install Django
 RUN pip install pymysql

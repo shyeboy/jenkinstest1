@@ -36,13 +36,13 @@ COPY ./main/settings.py /main/mysite/config/
 WORKDIR ./main/mysite/
 
 # 데이터베이스 마이그레이션
-RUN python manage.py makemigrations
-RUN python manage.py migrate
+# RUN python manage.py makemigrations
+# RUN python manage.py migrate
 
-# 슈퍼유저 생성
-RUN python manage.py createsuperuser --noinput \
-    --username=admin \
-    --email=admin@example.com
+# # 슈퍼유저 생성
+# RUN python manage.py createsuperuser --noinput \
+#     --username=admin \
+#     --email=admin@example.com
 
 # Django 서버 실행
 CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]

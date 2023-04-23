@@ -37,23 +37,5 @@ pipeline {
         }
       }
     }
-    stage('Deploy to Azure AKS') {
-      steps {
-        script {
-          withCredentials([[
-              $class: 'AzureCredentialsBinding',
-              credentialsId: env.AZURE_CREDENTIAL_ID,
-              useAzureCli: true
-          ]]) {
-            def azCredentials = azureCredentials(env.AZURE_CREDENTIAL_ID)
-
-            sh "az login --service-principal -u ${azCredentials.getClientId()} -p ${azCredentials.getClientSecret()} --tenant ${azCredentials.getTenantId()}"
-            sh "az aks get-credentials --name ${env.AKS_NAME} --resource-group ${env.RESOURCE_GROUP}"
-
-            sh "kubectl set image deployment/${env.K8S_DEPLOYMENT_NAME} ${env.K8S_CONTAINER_NAME}=${env.ACR_NAME}.azurecr.io/${env.DOCKER_IMAGE} -n ${env.K8S_NAMESPACE}"
-          }
-        }
-      }
-    }
-  }
+/
 }

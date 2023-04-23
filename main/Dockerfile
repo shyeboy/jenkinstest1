@@ -25,7 +25,7 @@ RUN pip install cryptography
 WORKDIR /mysite/mysite/
 
 # Django 설정 파일 및 앱 설정 파일 복사
-COPY ./settings.py /mysite/mysite/config/
+COPY ./settings.py /mysite/config/
 
 # 데이터베이스 마이그레이션
 # RUN python manage.py makemigrations

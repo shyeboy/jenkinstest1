@@ -93,7 +93,7 @@ DATABASES = {
             'USER': 'adminuser', # 데이터베이스 계정
             'PASSWORD':'P@ssw0rd', # 계정 비밀번호
         #     # 'HOST':'localhost', # 데이테베이스 IP
-            'HOST': 'django-database.mysql.database.azure.com',
+            'HOST': 'django.mysql.database.azure.com',
             'PORT':'3306', # 데이터베이스 port
             'OPTIONS': {
                 'ssl': {'require_secure_transport': True},

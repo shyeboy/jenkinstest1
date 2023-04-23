@@ -25,16 +25,16 @@ RUN pip install cryptography
 WORKDIR /mysite/mysite/
 
 # Django 설정 파일 및 앱 설정 파일 복사
-COPY ./settings.py /mysite/mysite/config/
+COPY ./settings.py /mysite/config/
 
 # 데이터베이스 마이그레이션
-RUN python manage.py makemigrations
-RUN python manage.py migrate
+# RUN python manage.py makemigrations
+# RUN python manage.py migrate
 
-# 슈퍼유저 생성
-RUN python manage.py createsuperuser --noinput \
-    --username=admin \
-    --email=admin@example.com
+# # 슈퍼유저 생성
+# RUN python manage.py createsuperuser --noinput \
+#     --username=admin \
+#     --email=admin@example.com
 
 # Django 서버 실행
 CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]

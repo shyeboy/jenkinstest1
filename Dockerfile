@@ -28,10 +28,12 @@ RUN pip install cryptography
 #RUN python3 manage.py startapp blog
 #RUN python3 manage.py startapp common
 
-WORKDIR /main/mysite/
+
 
 # Django 설정 파일 및 앱 설정 파일 복사
 COPY ./main/settings.py /main/mysite/config/
+
+WORKDIR ./main/mysite/
 
 # 데이터베이스 마이그레이션
 RUN python manage.py makemigrations

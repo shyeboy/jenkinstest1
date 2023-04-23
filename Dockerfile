@@ -28,7 +28,7 @@ RUN pip install cryptography
 #RUN python3 manage.py startapp blog
 #RUN python3 manage.py startapp common
 
-WORKDIR /mysite/
+WORKDIR /main/mysite/
 
 # Django 설정 파일 및 앱 설정 파일 복사
 COPY ./main/settings.py /main/mysite/config/

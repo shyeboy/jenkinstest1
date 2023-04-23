@@ -4,13 +4,6 @@ pipeline {
   environment {
     DOCKER_REGISTRY = "docker.io"
     DOCKER_IMAGE = "kimsunghyun26/final_project"
-    ACR_NAME = "kimsunghyun26/final_project:V3"
-    AKS_NAME = "aks-1"
-    RESOURCE_GROUP = "test_rg"
-    AZURE_CREDENTIAL_ID = "08a5b32e-6669-4195-8b61-da1961a0caaf"
-    K8S_NAMESPACE = "default"
-    K8S_DEPLOYMENT_NAME = "was"
-    K8S_CONTAINER_NAME = "kimsunghyun26/final_project:V3"
   }
   stages {
     stage('Build Docker image') {
